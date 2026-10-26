@@ -1,16 +1,14 @@
 name: Run cppcheck
 
 on:
-  schedule:
-    - cron: "15 3 * * *"
-
+  workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   cppcheck:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Update apt cache
